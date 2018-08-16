@@ -2,10 +2,17 @@
 
 // Request Handlers
 
-const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+
+// Body Parser Middleware
+
+var urlencoderParser = bodyParser.urlencoded({extended : false })
 
 // Connect To Cloud Database [ Mongodb ] via Mongoose
-mongoose.connect('mongodb://rohito:nodejs1@ds123822.mlab.com:23822/nodejs_todo')
+
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://rohito:nodejs1@ds123822.mlab.com:23822/nodejs_todo' , { useNewUrlParser: true })
 
 // Create Schema And Model For Transfering Data To and From Database
 
@@ -17,18 +24,21 @@ var todoSchema = new mongoose.Schema({
 var Todo = mongoose.model('Todo' , todoSchema)
 
 
-var item1 = Todo({
-  item : "Connect MongoDB Database"
-}).save( (err) => {
-if(err){
-  console.log(err)
-}else {
-  console.log('Item saved to Database')
-}
-})
+
+// Saved Test Data To Mlab
+
+// var item1 = Todo({
+//   item : "Connect MongoDB Database"
+// }).save( (err) => {
+// if(err){
+//   console.log(err)
+// }else {
+//   console.log('Item saved to Database')
+// }
+// })
 
 
-var data = [
+var datas = [
   {item: 'Optimize React Redux Project'},
   {item: 'Buy cookies'},
   {item: 'Pay Phone bill'},
@@ -38,22 +48,41 @@ var data = [
 
 ]
 
-
-
 module.exports = (app) => {
 
 app.get('/todo' , (req,res) => {
-  res.render('todo' , {
-    todos : data
-  })
+
+  // get data from Database - MongoDB Mlab
+    // Todo.find({} , (err, data) => {
+    //   if(err){
+    //     console.log(err)
+    //   }else {
+    //     res.render('todo' , {
+    //       todos : datas
+    //     })
+    //   }
+    // })
+
+    res.render('todo' , {
+      todos : datas
+    })
+
+});
+
+app.post('/todo' , urlencoderParser , (req,res) => {
+
+  datas.push(req.body);
+  res.json(datas)
+
 })
 
-app.post('/todo' , (req,res) => {
-  res.render()
+app.delete('/todo/:item' , (req,res) =>  {
+
+datas = datas.filter( function (todo) {
+   return todo.item.replace(/ /g , "-") !== req.params.item
 })
 
-app.delete('/todo' , (req,res) =>  {
-  res.render()
+  res.json(datas)
 })
 
 }

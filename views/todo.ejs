@@ -18,13 +18,16 @@ crossorigin="anonymous">
 
 <div id="myDIV" class="header">
   <h2 style="margin:5px">To Do [or] Not To Do</h2>
+  <form id="myForm">
   <input type="text" id="myInput" name="item" placeholder="Add New Item..." required>
-  <span onclick="newElement()" class="addBtn">Add</span>
+  <!-- <span onclick="newElement()" class="addBtn">Add</span> -->
+  <button class="addBtn">Add</button>
+  </form>
 </div>
 
     <ul id="myUL">
   <% for (var i = 0 ; i < todos.length ; i ++) { %>
-        <li> <%= todos[i].item %></li>
+        <li><%=todos[i].item%></li>
 <%  } %>
   </ul>
 
