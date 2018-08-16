@@ -1,10 +1,10 @@
 // Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
+var myNodelist = document.getElementsByTagName("li");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
+  var span = document.createElement("span");
   var txt = document.createTextNode("\u00D7");
-  span.className = "close";
+  span.classList.add("close") ;
   span.appendChild(txt);
   myNodelist[i].appendChild(span);
 }
@@ -36,7 +36,7 @@ function newElement() {
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    document.getElementById("myUL").appendChild(li);
+  document.getElementById("myUL").appendChild(li);
   }
   document.getElementById("myInput").value = "";
 
