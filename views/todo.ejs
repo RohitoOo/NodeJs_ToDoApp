@@ -17,19 +17,27 @@ crossorigin="anonymous">
 <body>
 
 <div id="myDIV" class="header">
-  <h2 style="margin:5px">My To Do List</h2>
+  <h2 style="margin:5px">To Do [or] Not To Do</h2>
   <input type="text" id="myInput" name="item" placeholder="Add New Item..." required>
   <span onclick="newElement()" class="addBtn">Add</span>
 </div>
 
-<ul id="myUL">
+    <ul id="myUL">
+  <% for (var i = 0 ; i < todos.length ; i ++) { %>
+        <li> <%= todos[i].item %></li>
+<%  } %>
+  </ul>
+
+<!-- <ul id="myUL">
   <li>Optimize React Redux Project</li>
   <li class="checked">Hit the gym</li>
   <li>Pay Phone bill</li>
   <li>Meet Wilson</li>
   <li>Read the JS book</li>
   <li>Organize trello board</li>
-</ul>
+</ul> -->
+
+
 <script src="/assets/main.js"></script>
 
 </body>
