@@ -38,51 +38,61 @@ var Todo = mongoose.model('Todo' , todoSchema)
 // })
 
 
-var datas = [
-  {item: 'Optimize React Redux Project'},
-  {item: 'Buy cookies'},
-  {item: 'Pay Phone bill'},
-  {item: 'Organize trello board'},
-  {item: 'Call Yo Mama'},
-  {item: 'Read the JS book'},
-
-]
+// var datas = [
+//   {item: 'Optimize React Redux Project'},
+//   {item: 'Buy cookies'},
+//   {item: 'Pay Phone bill'},
+//   {item: 'Organize trello board'},
+//   {item: 'Call Yo Mama'},
+//   {item: 'Read the JS book'},
+//
+// ]
 
 module.exports = (app) => {
 
 app.get('/todo' , (req,res) => {
 
   // get data from Database - MongoDB Mlab
-    // Todo.find({} , (err, data) => {
-    //   if(err){
-    //     console.log(err)
-    //   }else {
-    //     res.render('todo' , {
-    //       todos : datas
-    //     })
-    //   }
-    // })
-
-    res.render('todo' , {
-      todos : datas
+    Todo.find({} , (err, data) => {
+      if(err){
+        console.log(err)
+      }else {
+        res.render('todo' , {
+          todos : data
+        })
+      }
     })
 
 });
 
 app.post('/todo' , urlencoderParser , (req,res) => {
 
-  datas.push(req.body);
-  res.json(datas)
+// get current Data and Add new Data to MongoDB
+
+var newTodo = Todo(req.body).save( (err,data)=> {
+  if(err){
+    console.log(err)
+  }else {
+    // send Data Back to Front End Via Jquery Ajax Handler
+    res.json(data)
+  }
+})
 
 })
 
 app.delete('/todo/:item' , (req,res) =>  {
 
-datas = datas.filter( function (todo) {
-   return todo.item.replace(/ /g , "-") !== req.params.item
+
+// Delete Selected item From Data Base
+
+Todo.find({item: req.params.item.replace (/\-/g , " ") }).remove( (err,data)=> {
+  if(err){
+    console.log(err)
+  }else {
+    res.json(data)
+  }
 })
 
-  res.json(datas)
 })
 
 }

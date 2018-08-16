@@ -82,7 +82,6 @@ $(document).ready( () => {
   $('li').on('click' , function() {
 
     var item = $(this).text().replace(/ /g, "-");
-console.log(item)
     $.ajax({
       type: 'DELETE',
       url: '/todo/' + item,
