@@ -1,10 +1,11 @@
 // routes, pass data to list
 
+// Request Handlers
+
 module.exports = (app) => {
 
 app.get('/todo' , (req,res) => {
-  console.log('Test Get Route')
-  // res.render()
+  res.render('todo')
 })
 
 app.post('/todo' , (req,res) => {

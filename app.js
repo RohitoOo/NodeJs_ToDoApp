@@ -5,13 +5,13 @@ const toDoController = require('./controllers/toDoController')
 const app = express();
 
 // Set Template Engine EJS
-app.set('template engine' , 'ejs');
+app.set('view engine' , 'ejs');
 
 
-//Set Up Static Files
+//Set Up Static Files - Required Middleware
 app.use(express.static('./public') )
 
-// Controllers
+// Controllers Function ( Control Part of MVC Architecture )
 toDoController(app);
 
 // Liten to port

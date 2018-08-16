@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous">
+</script>
+<!-- Customized Style Sheets -->
+<link rel="stylesheet" href="/assets/styles.css">
+
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">My To Do List</h2>
+  <input type="text" id="myInput" name="item" placeholder="Add New Item..." required>
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+
+<ul id="myUL">
+  <li>Optimize React Redux Project</li>
+  <li class="checked">Hit the gym</li>
+  <li>Pay Phone bill</li>
+  <li>Meet Suchi</li>
+  <li>Read the JS book</li>
+  <li>Organize trello board</li>
+</ul>
+<script src="/assets/main.js"></script>
+
+</body>
+</html>
