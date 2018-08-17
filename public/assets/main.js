@@ -72,10 +72,10 @@ $(document).ready( () => {
       url: '/todo',
       data: todo,
       success: function(datas){
-        console.log(datas)
         location.reload()
       }
     })
+     e.preventDefault();
   })
 
 

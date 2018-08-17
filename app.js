@@ -20,6 +20,9 @@ app.listen(port, () => {
   console.log('We Are Live On Port : ' + port )
 })
 
+app.get('*',function (req, res) {
+        res.redirect('/todo');
+    });
 
 // This App is using an MVC Architecture
 // Model View Controller
